@@ -5,7 +5,9 @@ I want to optimize for the following (in order)
 * The file size should be compact
 * Making a single Edit to the document should be fast
 
-The conceptual model of udt is that you have a totally ordered list of Edits:
+WARNING: this is vaporware right now, but I've gotten about 30% of the idea working in this repo (though the partially implemented skip list is buggy...) Pull requests (or just total rewrites) are welcome.
+
+The conceptual model of udt is that you have a set of Edits:
 
 ```
 type Edit struct {
@@ -23,7 +25,7 @@ type ID struct {
 }
 ```
 
-When operating on the CRDT, a tree-like structure is created using the following node type:
+When operating on the CRDT, a sorted tree-like structure is created of these edits using the following node type:
 
 ```
 type EditTreeNode {
